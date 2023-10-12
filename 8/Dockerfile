@@ -3,7 +3,9 @@ from centos:8
 VOLUME /output
 
 COPY MariaDB.repo /etc/yum.repos.d/
-RUN rpm --import https://mirror.ehv.weppel.nl/mariadb/yum/RPM-GPG-KEY-MariaDB && \
+ 
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* && \
+	rpm --import https://rpm.mariadb.org/RPM-GPG-KEY-MariaDB && \
 	dnf install rpm-build epel-release -y && \
 	rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
 

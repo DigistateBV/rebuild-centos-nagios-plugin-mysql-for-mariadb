@@ -1,0 +1,32 @@
+name: Build packages
+
+on: [push]
+
+jobs:
+  build_packages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Build CentOS 8 packages
+        uses: isbang/compose-action@v1.5.1
+        with:
+          compose-file: "./8/docker-compose.yml"
+          services: |
+            builder
+      - name: Build CentOS 9 packages
+        uses: isbang/compose-action@v1.5.1
+        with:
+          compose-file: "./9/docker-compose.yml"
+          services: |
+            builder
+      - name: Store CentOS 8 rpms
+        uses: actions/upload-artifact@v3
+        with:
+          name: rpms-centos8
+          path: ./8/rpms
+      - name: Store CentOS 9 rpms
+        uses: actions/upload-artifact@v3
+        with:
+          name: rpms-centos9
+          path: ./9/rpms
