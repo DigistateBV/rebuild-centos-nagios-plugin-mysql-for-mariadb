@@ -13,7 +13,7 @@ RUN groupadd mock && useradd -m -G mock mockbuild
 
 WORKDIR /root
 
-ADD https://download-ib01.fedoraproject.org/pub/epel/8/Everything/SRPMS/Packages/n/nagios-plugins-2.3.3-4.el8.src.rpm /root/nagios-plugins.src.rpm
+ADD https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/n/nagios-plugins-2.3.3-6.el8.x86_64.rpm /root/nagios-plugins.src.rpm
 
 RUN rpmbuild --rebuild nagios-plugins.src.rpm
 
