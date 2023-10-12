@@ -9,13 +9,13 @@ RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|
 	dnf install rpm-build epel-release -y && \
 	rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
 
-RUN dnf install cowsay sendmail openssh-clients fping autoconf automake freeradius-client-devel gcc gettext libdbi-devel libpq-devel net-snmp-devel net-snmp-devel net-snmp-utils openldap-devel perl-generators samba-client bind-utils make MariaDB-devel -y
+RUN dnf install cowsay sendmail openssh-clients fping autoconf automake freeradius-client-devel gcc gettext libdbi-devel libpq-devel net-snmp-devel net-snmp-devel net-snmp-utils openldap-devel perl-generators samba-client bind-utils make mariadb-devel -y
 
 RUN groupadd mock && useradd -m -G mock mockbuild
 
 WORKDIR /root
 
-ADD https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/n/nagios-plugins-2.3.3-6.el8.x86_64.rpm /root/nagios-plugins.src.rpm
+ADD https://download-ib01.fedoraproject.org/pub/epel/8/Everything/SRPMS/Packages/n/nagios-plugins-2.3.3-6.el8.src.rpm /root/nagios-plugins.src.rpm
 
 RUN rpmbuild --rebuild nagios-plugins.src.rpm
 
